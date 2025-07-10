@@ -6,7 +6,7 @@ export const fetchOompas = createAsyncThunk(
   'list/fetchOompas',
   async (page = 1) => {
     const res = await fetch(`${API_URL}?page=${page}`);
-    if (!res.ok) throw new Error('Failed to fetch');
+    if (!res.ok) throw new Error('Failed to fetch oompa loompas');
     const data = await res.json();
     return data; // contains { current, total, results }
   }

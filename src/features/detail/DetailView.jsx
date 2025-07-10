@@ -24,11 +24,11 @@ export default function DetailView() {
     }
   }, [dispatch, parsedId, entity]);
 
-  if (status === 'loading' && !entity) {
+  if ('loading' === status && !entity) {
     return <p className="text-center text-lg">Loading details...</p>;
   }
 
-  if (status === 'failed') {
+  if ('failed' === status) {
     return <p className="text-center text-red-500">Error: {error}</p>;
   }
 
@@ -38,21 +38,20 @@ export default function DetailView() {
 
   return (
     <div className="w-full px-4">
-      <div className="max-w-screen mx-auto p-6">
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+      <div className="max-w-screen p-6">
+        <div className="flex flex-col md:flex-row gap-6">
           <img
             src={data.image}
             alt={`${data.first_name} ${data.last_name}`}
-            className="w-64 h-64 object-cover rounded-lg flex-shrink-0"
+            className="w-64 h-64 object-cover rounded-lg"
           />
-          <div className="flex-1 text-left">
+          <div>
             <h2 className="text-3xl font-bold mb-2">
               {data.first_name} {data.last_name}
             </h2>
             <p className="text-gray-600 mb-1 italic">{data.gender === 'M' ? 'Man' : 'Woman'}</p>
             <p className="text-gray-600 mb-4">{data.profession}</p>
             <div
-              className="prose max-w-none"
               dangerouslySetInnerHTML={{ __html: data.description }}
             />
           </div>

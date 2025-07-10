@@ -60,21 +60,21 @@ export default function ListView() {
   });
 
   return (
-    <div className="pt-24 px-4 max-w-screen mx-auto min-h-[calc(100vh-100px)]">
+    <div className="pt-24 px-4 w-screen h-screen">
       {/* Search */}
       <div className="flex justify-end mb-6">
         <div className="relative w-72">
           <input
             type="text"
             placeholder="Search by name or profession"
-            className="w-full border rounded pl-10 pr-3 py-2 text-sm"
+            className="w-full border rounded pl-10 py-2 text-sm"
             value={searchTerm}
             onChange={(e) => dispatch(setSearchTerm(e.target.value))}
           />
           <img
             src="https://s3.eu-central-1.amazonaws.com/napptilus/level-test/imgs/ic_search.png"
             alt="Search"
-            className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 pointer-events-none opacity-60"
+            className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 pointer-events-none opacity-60"
           />
         </div>
       </div>
@@ -94,7 +94,7 @@ export default function ListView() {
       {loading && oompas.length === 0 && <Spinner />}
 
       {/* Results */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 min-h-[600px]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {filteredOompas.length > 0 ? (
             filteredOompas.map((oompa) => (
             <Link
@@ -103,26 +103,26 @@ export default function ListView() {
                 className="bg-gray-800 rounded-lg p-4 hover:bg-gray-700 transition text-center text-white"
             >
                 <img
-                src={oompa.image}
-                alt={`${oompa.first_name} ${oompa.last_name}`}
-                className="w-full h-[250px] object-cover rounded mb-4"
+                  src={oompa.image}
+                  alt={`${oompa.first_name} ${oompa.last_name}`}
+                  className="w-full h-[250px] object-cover rounded mb-4"
                 />
                 <p className="font-semibold text-lg">
-                {oompa.first_name} {oompa.last_name}
+                  {oompa.first_name} {oompa.last_name}
                 </p>
                 <p className="text-sm text-gray-400">
-                {oompa.gender === 'M' ? 'Man' : 'Woman'}
+                  {oompa.gender === 'M' ? 'Man' : 'Woman'}
                 </p>
                 <p className="text-sm text-gray-400">{oompa.profession}</p>
             </Link>
             ))
         ) : (
             !loading && (
-            <div className="col-span-full flex justify-center items-center py-20">
-                <p className="text-center text-gray-500 text-lg">
-                    Oops, no Oompa Loompas found.
-                </p>
-            </div>
+              <div className="col-span-full flex justify-center items-center py-20">
+                  <p className="text-center text-gray-500 text-lg">
+                      Oops, no Oompa Loompas found.
+                  </p>
+              </div>
             )
         )}
       </div>
